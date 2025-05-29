@@ -1,0 +1,582 @@
+{
+    "1725782199018#foreignKey": [
+        {
+            "constraint_name": "vol_ibfk_1",
+            "table_schema": "aeroport",
+            "table_name": "vol",
+            "column_name": "ref_pilote",
+            "referenced_schema": "aeroport",
+            "referenced_table": "pilote",
+            "referenced_column": "Code_pilote"
+        },
+        {
+            "constraint_name": "vol_ibfk_2",
+            "table_schema": "aeroport",
+            "table_name": "vol",
+            "column_name": "ref_avion",
+            "referenced_schema": "aeroport",
+            "referenced_table": "avion",
+            "referenced_column": "Code_avion"
+        },
+        {
+            "constraint_name": "vol_ibfk_3",
+            "table_schema": "aeroport",
+            "table_name": "vol",
+            "column_name": "ref_compagnie",
+            "referenced_schema": "aeroport",
+            "referenced_table": "compagnie",
+            "referenced_column": "Code_compagnie"
+        },
+        {
+            "constraint_name": "demandereparation_ibfk_1",
+            "table_schema": "dkm",
+            "table_name": "demandereparation",
+            "column_name": "codeSal",
+            "referenced_schema": "dkm",
+            "referenced_table": "salarie",
+            "referenced_column": "codeSal"
+        },
+        {
+            "constraint_name": "demandereparation_ibfk_2",
+            "table_schema": "dkm",
+            "table_name": "demandereparation",
+            "column_name": "codeGar",
+            "referenced_schema": "dkm",
+            "referenced_table": "garagiste",
+            "referenced_column": "codeGar"
+        },
+        {
+            "constraint_name": "salarie_ibfk_1",
+            "table_schema": "dkm",
+            "table_name": "salarie",
+            "column_name": "codeSer",
+            "referenced_schema": "dkm",
+            "referenced_table": "service",
+            "referenced_column": "codeSer"
+        },
+        {
+            "constraint_name": "utilisation_ibfk_1",
+            "table_schema": "dkm",
+            "table_name": "utilisation",
+            "column_name": "matricule",
+            "referenced_schema": "dkm",
+            "referenced_table": "voiture",
+            "referenced_column": "matricule"
+        },
+        {
+            "constraint_name": "utilisation_ibfk_2",
+            "table_schema": "dkm",
+            "table_name": "utilisation",
+            "column_name": "codeSal",
+            "referenced_schema": "dkm",
+            "referenced_table": "salarie",
+            "referenced_column": "codeSal"
+        },
+        {
+            "constraint_name": "commande_ibfk_1",
+            "table_schema": "entreprise",
+            "table_name": "commande",
+            "column_name": "client_id",
+            "referenced_schema": "entreprise",
+            "referenced_table": "client",
+            "referenced_column": "id"
+        },
+        {
+            "constraint_name": "detailcommande_ibfk_1",
+            "table_schema": "entreprise",
+            "table_name": "detailcommande",
+            "column_name": "commande_id",
+            "referenced_schema": "entreprise",
+            "referenced_table": "commande",
+            "referenced_column": "id"
+        },
+        {
+            "constraint_name": "detailcommande_ibfk_2",
+            "table_schema": "entreprise",
+            "table_name": "detailcommande",
+            "column_name": "article_id",
+            "referenced_schema": "entreprise",
+            "referenced_table": "article",
+            "referenced_column": "id"
+        },
+        {
+            "constraint_name": "lignecommande_ibfk_1",
+            "table_schema": "gererlescommandes",
+            "table_name": "lignecommande",
+            "column_name": "numarti",
+            "referenced_schema": "gererlescommandes",
+            "referenced_table": "article",
+            "referenced_column": "numart"
+        },
+        {
+            "constraint_name": "lignecommande_ibfk_2",
+            "table_schema": "gererlescommandes",
+            "table_name": "lignecommande",
+            "column_name": "numcoma",
+            "referenced_schema": "gererlescommandes",
+            "referenced_table": "commande",
+            "referenced_column": "numcom"
+        },
+        {
+            "constraint_name": "inscriptions_ibfk_1",
+            "table_schema": "gestiondescours",
+            "table_name": "inscriptions",
+            "column_name": "etudiant_id",
+            "referenced_schema": "gestiondescours",
+            "referenced_table": "etudiants",
+            "referenced_column": "id"
+        },
+        {
+            "constraint_name": "inscriptions_ibfk_2",
+            "table_schema": "gestiondescours",
+            "table_name": "inscriptions",
+            "column_name": "cours_id",
+            "referenced_schema": "gestiondescours",
+            "referenced_table": "cours",
+            "referenced_column": "id"
+        },
+        {
+            "constraint_name": "cours_ibfk_1",
+            "table_schema": "gestion_ecole",
+            "table_name": "cours",
+            "column_name": "pid",
+            "referenced_schema": "gestion_ecole",
+            "referenced_table": "professeur",
+            "referenced_column": "pid"
+        },
+        {
+            "constraint_name": "inscription_ibfk_1",
+            "table_schema": "gestion_ecole",
+            "table_name": "inscription",
+            "column_name": "eid",
+            "referenced_schema": "gestion_ecole",
+            "referenced_table": "etudiant",
+            "referenced_column": "eid"
+        },
+        {
+            "constraint_name": "inscription_ibfk_2",
+            "table_schema": "gestion_ecole",
+            "table_name": "inscription",
+            "column_name": "cnom",
+            "referenced_schema": "gestion_ecole",
+            "referenced_table": "cours",
+            "referenced_column": "cnom"
+        },
+        {
+            "constraint_name": "commande_ibfk_1",
+            "table_schema": "phpmyadmin",
+            "table_name": "commande",
+            "column_name": "idClient",
+            "referenced_schema": "phpmyadmin",
+            "referenced_table": "client_1",
+            "referenced_column": "idClient"
+        },
+        {
+            "constraint_name": "detailcommande_ibfk_1",
+            "table_schema": "phpmyadmin",
+            "table_name": "detailcommande",
+            "column_name": "idCommande",
+            "referenced_schema": "phpmyadmin",
+            "referenced_table": "commande",
+            "referenced_column": "idCommande"
+        },
+        {
+            "constraint_name": "detailcommande_ibfk_2",
+            "table_schema": "phpmyadmin",
+            "table_name": "detailcommande",
+            "column_name": "idProduit",
+            "referenced_schema": "phpmyadmin",
+            "referenced_table": "produit",
+            "referenced_column": "idProduit"
+        },
+        {
+            "constraint_name": "employes_ibfk_1",
+            "table_schema": "phpmyadmin",
+            "table_name": "employes",
+            "column_name": "departement_id",
+            "referenced_schema": "phpmyadmin",
+            "referenced_table": "departements",
+            "referenced_column": "idd"
+        },
+        {
+            "constraint_name": "employes_ibfk_2",
+            "table_schema": "phpmyadmin",
+            "table_name": "employes",
+            "column_name": "superieur_id",
+            "referenced_schema": "phpmyadmin",
+            "referenced_table": "employes",
+            "referenced_column": "ide"
+        },
+        {
+            "constraint_name": "employes_projets_ibfk_1",
+            "table_schema": "phpmyadmin",
+            "table_name": "employes_projets",
+            "column_name": "employe_id",
+            "referenced_schema": "phpmyadmin",
+            "referenced_table": "employes",
+            "referenced_column": "ide"
+        },
+        {
+            "constraint_name": "employes_projets_ibfk_2",
+            "table_schema": "phpmyadmin",
+            "table_name": "employes_projets",
+            "column_name": "projet_id",
+            "referenced_schema": "phpmyadmin",
+            "referenced_table": "projets",
+            "referenced_column": "idp"
+        },
+        {
+            "constraint_name": "inscription_ibfk_1",
+            "table_schema": "phpmyadmin",
+            "table_name": "inscription",
+            "column_name": "idetudiant",
+            "referenced_schema": "phpmyadmin",
+            "referenced_table": "etudiant",
+            "referenced_column": "idetudiant"
+        },
+        {
+            "constraint_name": "inscription_ibfk_2",
+            "table_schema": "phpmyadmin",
+            "table_name": "inscription",
+            "column_name": "idcours",
+            "referenced_schema": "phpmyadmin",
+            "referenced_table": "cours",
+            "referenced_column": "idcours"
+        },
+        {
+            "constraint_name": "paiement_ibfk_1",
+            "table_schema": "phpmyadmin",
+            "table_name": "paiement",
+            "column_name": "idCommande",
+            "referenced_schema": "phpmyadmin",
+            "referenced_table": "commande",
+            "referenced_column": "idCommande"
+        },
+        {
+            "constraint_name": "comptes_ibfk_1",
+            "table_schema": "vvvvvv",
+            "table_name": "comptes",
+            "column_name": "Num_Client",
+            "referenced_schema": "vvvvvv",
+            "referenced_table": "clients",
+            "referenced_column": "Num_Client"
+        },
+        {
+            "constraint_name": "comptes_ibfk_2",
+            "table_schema": "vvvvvv",
+            "table_name": "comptes",
+            "column_name": "Num_Agence",
+            "referenced_schema": "vvvvvv",
+            "referenced_table": "agences",
+            "referenced_column": "Num_Agence"
+        },
+        {
+            "constraint_name": "emprunts_ibfk_1",
+            "table_schema": "vvvvvv",
+            "table_name": "emprunts",
+            "column_name": "Num_Client",
+            "referenced_schema": "vvvvvv",
+            "referenced_table": "clients",
+            "referenced_column": "Num_Client"
+        },
+        {
+            "constraint_name": "emprunts_ibfk_2",
+            "table_schema": "vvvvvv",
+            "table_name": "emprunts",
+            "column_name": "Num_Agence",
+            "referenced_schema": "vvvvvv",
+            "referenced_table": "agences",
+            "referenced_column": "Num_Agence"
+        }
+    ],
+    "1728296460087#foreignKey": [
+        {
+            "constraint_name": "vol_ibfk_1",
+            "table_schema": "aeroport",
+            "table_name": "vol",
+            "column_name": "ref_pilote",
+            "referenced_schema": "aeroport",
+            "referenced_table": "pilote",
+            "referenced_column": "Code_pilote"
+        },
+        {
+            "constraint_name": "vol_ibfk_2",
+            "table_schema": "aeroport",
+            "table_name": "vol",
+            "column_name": "ref_avion",
+            "referenced_schema": "aeroport",
+            "referenced_table": "avion",
+            "referenced_column": "Code_avion"
+        },
+        {
+            "constraint_name": "vol_ibfk_3",
+            "table_schema": "aeroport",
+            "table_name": "vol",
+            "column_name": "ref_compagnie",
+            "referenced_schema": "aeroport",
+            "referenced_table": "compagnie",
+            "referenced_column": "Code_compagnie"
+        },
+        {
+            "constraint_name": "demandereparation_ibfk_1",
+            "table_schema": "dkm",
+            "table_name": "demandereparation",
+            "column_name": "codeSal",
+            "referenced_schema": "dkm",
+            "referenced_table": "salarie",
+            "referenced_column": "codeSal"
+        },
+        {
+            "constraint_name": "demandereparation_ibfk_2",
+            "table_schema": "dkm",
+            "table_name": "demandereparation",
+            "column_name": "codeGar",
+            "referenced_schema": "dkm",
+            "referenced_table": "garagiste",
+            "referenced_column": "codeGar"
+        },
+        {
+            "constraint_name": "salarie_ibfk_1",
+            "table_schema": "dkm",
+            "table_name": "salarie",
+            "column_name": "codeSer",
+            "referenced_schema": "dkm",
+            "referenced_table": "service",
+            "referenced_column": "codeSer"
+        },
+        {
+            "constraint_name": "utilisation_ibfk_1",
+            "table_schema": "dkm",
+            "table_name": "utilisation",
+            "column_name": "matricule",
+            "referenced_schema": "dkm",
+            "referenced_table": "voiture",
+            "referenced_column": "matricule"
+        },
+        {
+            "constraint_name": "utilisation_ibfk_2",
+            "table_schema": "dkm",
+            "table_name": "utilisation",
+            "column_name": "codeSal",
+            "referenced_schema": "dkm",
+            "referenced_table": "salarie",
+            "referenced_column": "codeSal"
+        },
+        {
+            "constraint_name": "commande_ibfk_1",
+            "table_schema": "entreprise",
+            "table_name": "commande",
+            "column_name": "client_id",
+            "referenced_schema": "entreprise",
+            "referenced_table": "client",
+            "referenced_column": "id"
+        },
+        {
+            "constraint_name": "detailcommande_ibfk_1",
+            "table_schema": "entreprise",
+            "table_name": "detailcommande",
+            "column_name": "commande_id",
+            "referenced_schema": "entreprise",
+            "referenced_table": "commande",
+            "referenced_column": "id"
+        },
+        {
+            "constraint_name": "detailcommande_ibfk_2",
+            "table_schema": "entreprise",
+            "table_name": "detailcommande",
+            "column_name": "article_id",
+            "referenced_schema": "entreprise",
+            "referenced_table": "article",
+            "referenced_column": "id"
+        },
+        {
+            "constraint_name": "lignecommande_ibfk_1",
+            "table_schema": "gererlescommandes",
+            "table_name": "lignecommande",
+            "column_name": "numarti",
+            "referenced_schema": "gererlescommandes",
+            "referenced_table": "article",
+            "referenced_column": "numart"
+        },
+        {
+            "constraint_name": "lignecommande_ibfk_2",
+            "table_schema": "gererlescommandes",
+            "table_name": "lignecommande",
+            "column_name": "numcoma",
+            "referenced_schema": "gererlescommandes",
+            "referenced_table": "commande",
+            "referenced_column": "numcom"
+        },
+        {
+            "constraint_name": "inscriptions_ibfk_1",
+            "table_schema": "gestiondescours",
+            "table_name": "inscriptions",
+            "column_name": "etudiant_id",
+            "referenced_schema": "gestiondescours",
+            "referenced_table": "etudiants",
+            "referenced_column": "id"
+        },
+        {
+            "constraint_name": "inscriptions_ibfk_2",
+            "table_schema": "gestiondescours",
+            "table_name": "inscriptions",
+            "column_name": "cours_id",
+            "referenced_schema": "gestiondescours",
+            "referenced_table": "cours",
+            "referenced_column": "id"
+        },
+        {
+            "constraint_name": "cours_ibfk_1",
+            "table_schema": "gestion_ecole",
+            "table_name": "cours",
+            "column_name": "pid",
+            "referenced_schema": "gestion_ecole",
+            "referenced_table": "professeur",
+            "referenced_column": "pid"
+        },
+        {
+            "constraint_name": "inscription_ibfk_1",
+            "table_schema": "gestion_ecole",
+            "table_name": "inscription",
+            "column_name": "eid",
+            "referenced_schema": "gestion_ecole",
+            "referenced_table": "etudiant",
+            "referenced_column": "eid"
+        },
+        {
+            "constraint_name": "inscription_ibfk_2",
+            "table_schema": "gestion_ecole",
+            "table_name": "inscription",
+            "column_name": "cnom",
+            "referenced_schema": "gestion_ecole",
+            "referenced_table": "cours",
+            "referenced_column": "cnom"
+        },
+        {
+            "constraint_name": "commande_ibfk_1",
+            "table_schema": "phpmyadmin",
+            "table_name": "commande",
+            "column_name": "idClient",
+            "referenced_schema": "phpmyadmin",
+            "referenced_table": "client_1",
+            "referenced_column": "idClient"
+        },
+        {
+            "constraint_name": "detailcommande_ibfk_1",
+            "table_schema": "phpmyadmin",
+            "table_name": "detailcommande",
+            "column_name": "idCommande",
+            "referenced_schema": "phpmyadmin",
+            "referenced_table": "commande",
+            "referenced_column": "idCommande"
+        },
+        {
+            "constraint_name": "detailcommande_ibfk_2",
+            "table_schema": "phpmyadmin",
+            "table_name": "detailcommande",
+            "column_name": "idProduit",
+            "referenced_schema": "phpmyadmin",
+            "referenced_table": "produit",
+            "referenced_column": "idProduit"
+        },
+        {
+            "constraint_name": "employes_ibfk_1",
+            "table_schema": "phpmyadmin",
+            "table_name": "employes",
+            "column_name": "departement_id",
+            "referenced_schema": "phpmyadmin",
+            "referenced_table": "departements",
+            "referenced_column": "idd"
+        },
+        {
+            "constraint_name": "employes_ibfk_2",
+            "table_schema": "phpmyadmin",
+            "table_name": "employes",
+            "column_name": "superieur_id",
+            "referenced_schema": "phpmyadmin",
+            "referenced_table": "employes",
+            "referenced_column": "ide"
+        },
+        {
+            "constraint_name": "employes_projets_ibfk_1",
+            "table_schema": "phpmyadmin",
+            "table_name": "employes_projets",
+            "column_name": "employe_id",
+            "referenced_schema": "phpmyadmin",
+            "referenced_table": "employes",
+            "referenced_column": "ide"
+        },
+        {
+            "constraint_name": "employes_projets_ibfk_2",
+            "table_schema": "phpmyadmin",
+            "table_name": "employes_projets",
+            "column_name": "projet_id",
+            "referenced_schema": "phpmyadmin",
+            "referenced_table": "projets",
+            "referenced_column": "idp"
+        },
+        {
+            "constraint_name": "inscription_ibfk_1",
+            "table_schema": "phpmyadmin",
+            "table_name": "inscription",
+            "column_name": "idetudiant",
+            "referenced_schema": "phpmyadmin",
+            "referenced_table": "etudiant",
+            "referenced_column": "idetudiant"
+        },
+        {
+            "constraint_name": "inscription_ibfk_2",
+            "table_schema": "phpmyadmin",
+            "table_name": "inscription",
+            "column_name": "idcours",
+            "referenced_schema": "phpmyadmin",
+            "referenced_table": "cours",
+            "referenced_column": "idcours"
+        },
+        {
+            "constraint_name": "paiement_ibfk_1",
+            "table_schema": "phpmyadmin",
+            "table_name": "paiement",
+            "column_name": "idCommande",
+            "referenced_schema": "phpmyadmin",
+            "referenced_table": "commande",
+            "referenced_column": "idCommande"
+        },
+        {
+            "constraint_name": "comptes_ibfk_1",
+            "table_schema": "vvvvvv",
+            "table_name": "comptes",
+            "column_name": "Num_Client",
+            "referenced_schema": "vvvvvv",
+            "referenced_table": "clients",
+            "referenced_column": "Num_Client"
+        },
+        {
+            "constraint_name": "comptes_ibfk_2",
+            "table_schema": "vvvvvv",
+            "table_name": "comptes",
+            "column_name": "Num_Agence",
+            "referenced_schema": "vvvvvv",
+            "referenced_table": "agences",
+            "referenced_column": "Num_Agence"
+        },
+        {
+            "constraint_name": "emprunts_ibfk_1",
+            "table_schema": "vvvvvv",
+            "table_name": "emprunts",
+            "column_name": "Num_Client",
+            "referenced_schema": "vvvvvv",
+            "referenced_table": "clients",
+            "referenced_column": "Num_Client"
+        },
+        {
+            "constraint_name": "emprunts_ibfk_2",
+            "table_schema": "vvvvvv",
+            "table_name": "emprunts",
+            "column_name": "Num_Agence",
+            "referenced_schema": "vvvvvv",
+            "referenced_table": "agences",
+            "referenced_column": "Num_Agence"
+        }
+    ]
+}

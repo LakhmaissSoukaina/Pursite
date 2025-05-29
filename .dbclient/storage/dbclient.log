@@ -1,0 +1,304 @@
+2024-09-07 15:08:09 Resource server started on port 8828
+2024-09-08 08:56:56 Creating MySQL connection for 1725782199018
+2024-09-08 08:56:57 Creating MySQL connection for 1725782199018_tree
+2024-09-08 09:00:40 Executing: CREATE DATABASE entreprise
+2024-09-08 09:00:40 Result: 1 rows affected in 15ms
+2024-09-08 09:01:49 Executing: CREATE TABLE table1(       id int NOT NULL PRIMARY KEY AUTO_INCREMENT,     create_time DATETIME,     name VARCHAR(255) )
+2024-09-08 09:01:49 Result: 0 rows affected in 51ms
+2024-09-08 09:11:07 Closing connection 1725782199018
+2024-09-08 09:11:07 Closing connection 1725782199018_tree
+2024-09-08 09:11:18 Creating MySQL connection for 1725782199018
+2024-09-08 09:11:18 Creating MySQL connection for 1725782199018_tree
+2024-09-09 21:19:09 Creating MySQL connection for 1725782199018_tree
+2024-09-09 21:19:09 Resource server started on port 8828
+2024-09-09 21:19:09 Closing connection 1725782199018_tree
+2024-09-09 21:19:14 Creating MySQL connection for 1725782199018_tree
+2024-09-09 21:19:14 Closing connection 1725782199018_tree
+2024-09-09 21:20:16 Creating MySQL connection for 1725782199018
+2024-09-09 21:20:16 Executing: CREATE DATABASE entreprise
+2024-09-09 21:20:16 Can't create database 'entreprise'; database exists
+2024-09-09 21:20:29 Creating MySQL connection for 1725782199018_tree
+2024-09-09 21:25:04 Executing: CREATE TABLE produit(  idProduit int primary key AUTO_INCREMENT,  nomProduit VARCHAR(100),  decription VARCHAR(100),  prix INT,  categorie VARCHAR(100) )
+2024-09-09 21:25:04 Result: 0 rows affected in 48ms
+2024-09-09 21:25:07 Executing: CREATE TABLE client_1( idClient int primary key AUTO_INCREMENT, nomClient VARCHAR(100), prenomClient VARCHAR(100), email VARCHAR (100), ville VARCHAR (100), rue VARCHAR (100), pays VARCHAR (100), telephone VARCHAR(100) )
+2024-09-09 21:25:07 Result: 0 rows affected in 32ms
+2024-09-09 21:25:09 Executing: CREATE TABLE commande (  idCommande int PRIMARY KEY AUTO_INCREMENT,  idClient int,  dateCommande DATE,  statut VARCHAR(100),  FOREIGN KEY (idClient) REFERENCES client_1(idClient) )
+2024-09-09 21:25:09 Result: 0 rows affected in 89ms
+2024-09-09 21:25:11 Executing: CREATE TABLE paiement( idPaiement int PRIMARY KEY AUTO_INCREMENT, idCommande int, montant int, datePaiement DATE, modePaiement VARCHAR(100), FOREIGN KEY (idCommande) REFERENCES commande(idCommande) )
+2024-09-09 21:25:11 Result: 0 rows affected in 101ms
+2024-09-09 21:25:18 Executing: CREATE TABLE detailCommande ( idCommande int, idProduit int, quantite int, PRIMARY KEY (idCommande,idProduit), FOREIGN KEY (idCommande) REFERENCES commande(idCommande), FOREIGN KEY (idProduit) REFERENCES produit(idProduit) )
+2024-09-09 21:25:18 Result: 0 rows affected in 89ms
+2024-09-09 21:30:22 Executing: SELECT * FROM produit WHERE `nomProduit` LIKE '%usb%' LIMIT 100
+2024-09-09 21:30:22 Result: Empty set in 8ms
+2024-09-09 21:31:06 Executing: SELECT * FROM produit WHERE `nomProduit` LIKE '%usb%' LIMIT 100
+2024-09-09 21:31:06 Result: 1 rows retrieved in 11ms
+2024-09-09 21:37:41 Executing: SELECT (SUM(prix*dt.quantite)),produit.`idProduit` FROM produit as produit INNER JOIN detailcommande dt on produit.`idProduit`=dt.`idProduit` GROUP BY produit.`idProduit` LIMIT 100
+2024-09-09 21:37:41 Result: Empty set in 19ms
+2024-09-09 21:38:17 Executing: SELECT (SUM(prix*dt.quantite)),produit.`idProduit` FROM produit as produit INNER JOIN detailcommande dt on produit.`idProduit`=dt.`idProduit` GROUP BY produit.`idProduit` LIMIT 100
+2024-09-09 21:38:17 Result: Empty set in 15ms
+2024-09-09 21:45:21 Executing: SELECT client_1.`idClient`(SUM(prix*detailcommande.quantite))FROM client_1 INNER JOIN commande on client_1.`idClient`=commande.`idClient` INNER JOIN detailcommande on commande.`idCommande`=detailcommande.`idCommande` INNER JOIN produit on detailcommande.`idProduit`=produit.`idProduit` GROUP BY client_1.`idClient`
+2024-09-09 21:45:21 FUNCTION client_1.idClient does not exist
+2024-09-09 21:46:09 Executing: SELECT client_1.`idClient`,(SUM(prix*detailcommande.quantite))FROM client_1 INNER JOIN commande on client_1.`idClient`=commande.`idClient` INNER JOIN detailcommande on commande.`idCommande`=detailcommande.`idCommande` INNER JOIN produit on detailcommande.`idProduit`=produit.`idProduit` GROUP BY client_1.`idClient`
+2024-09-09 21:46:09 Result: Empty set in 16ms
+2024-09-09 21:51:38 Executing: SELECT produit.`idProduit`,(SUM(detailcommande.quantite))FROM produit INNER JOIN detailcommande on produit.`idProduit`=detailcommande.`idProduit` GROUP BY produit.`idProduit` ORDER BY SUM(detailcommande.quantite) DESC LIMIT 2
+2024-09-09 21:51:38 Result: Empty set in 23ms
+2024-09-09 21:52:57 Executing: SELECT * from commande WHERE dateCommande BETWEEN '2020-05-04' AND '2024-06-07' LIMIT 100
+2024-09-09 21:52:57 Result: Empty set in 9ms
+2024-09-09 21:58:01 Executing: SELECT client_1.* FROM client_1 INNER JOIN commande on client_1.`idClient`=commande.`idClient` GROUP BY client_1.`idClient` ORDER BY COUNT(commande.`idClient`) DESC LIMIT 100
+2024-09-09 21:58:01 Result: Empty set in 6ms
+2024-09-09 22:02:28 Executing: SELECT DATEDIFF(paiement.`datePaiement`,commande.`dateCommande`)FROM paiement INNER JOIN commande on paiement.`idCommande`=commande.`idCommande`
+2024-09-09 22:02:28 Result: Empty set in 5ms
+2024-09-09 22:09:08 Executing: SELECT client_1.* , paiement.* , commande.statut FROM client_1 INNER JOIN commande on client_1.`idClient`=commande.`idClient` INNER JOIN paiement on commande.`idCommande`=paiement.`idCommande` WHERE (statut="true") LIMIT 100
+2024-09-09 22:09:08 Result: Empty set in 12ms
+2024-09-09 22:14:40 Executing: SELECT client_1.* , commande.* FROM client_1 RIGHT JOIN commande on client_1.`idClient`=commande.`idClient` LIMIT 100
+2024-09-09 22:14:40 Result: 2 rows retrieved in 8ms
+2024-09-09 22:14:52 Executing: SELECT client_1.* , commande.* FROM client_1 RIGHT JOIN commande on client_1.`idClient`=commande.`idClient` LIMIT 100
+2024-09-09 22:14:52 Result: 2 rows retrieved in 10ms
+2024-09-09 22:20:03 Executing: SELECT * FROM paiement RIGHT JOIN commande on paiement.`idCommande`=commande.`idCommande` LIMIT 100
+2024-09-09 22:20:03 Result: 2 rows retrieved in 9ms
+2024-09-10 10:15:51 Resource server started on port 8828
+2024-09-10 10:16:08 Creating MySQL connection for 1725782199018_tree
+2024-09-10 10:22:46 Resource server started on port 8828
+2024-09-10 10:22:47 Creating MySQL connection for 1725782199018_tree
+2024-09-10 13:08:53 Resource server started on port 8828
+2024-09-10 13:09:04 Creating MySQL connection for 1725782199018_tree
+2024-09-11 16:24:50 Resource server started on port 8828
+2024-09-11 16:25:00 Creating MySQL connection for 1725782199018_tree
+2024-09-11 16:25:00 Closing connection 1725782199018_tree
+2024-09-11 16:25:38 Creating MySQL connection for 1725782199018_tree
+2024-09-11 16:25:38 Closing connection 1725782199018_tree
+2024-09-11 16:25:38 Creating MySQL connection for 1725782199018_tree
+2024-09-11 16:25:38 Closing connection 1725782199018_tree
+2024-09-11 16:25:38 Creating MySQL connection for 1725782199018_tree
+2024-09-11 16:25:38 Closing connection 1725782199018_tree
+2024-09-11 16:25:41 Creating MySQL connection for 1725782199018_tree
+2024-09-11 16:25:41 Closing connection 1725782199018_tree
+2024-09-11 16:26:03 Creating MySQL connection for 1725782199018_tree
+2024-09-11 16:26:03 Closing connection 1725782199018_tree
+2024-09-11 16:26:25 Creating MySQL connection for 1725782199018_tree
+2024-09-11 16:26:25 Closing connection 1725782199018_tree
+2024-09-11 16:26:26 Creating MySQL connection for 1725782199018_tree
+2024-09-11 16:26:26 Closing connection 1725782199018_tree
+2024-09-11 16:26:46 Creating MySQL connection for 1726068403414
+2024-09-11 16:26:46 Closing connection 1726068403414
+2024-09-11 16:26:46 Creating MySQL connection for 1726068403414
+2024-09-11 16:26:46 Closing connection 1726068403414
+2024-09-11 16:26:46 Error: connect ECONNREFUSED 127.0.0.1:3306
+	at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1606:16)
+2024-09-11 16:26:46 Creating MySQL connection for 1725782199018_tree
+2024-09-11 16:26:46 Closing connection 1725782199018_tree
+2024-09-11 16:26:55 Creating MySQL connection for 1726068403414
+2024-09-11 16:26:55 Closing connection 1726068403414
+2024-09-11 16:26:55 Error: connect ECONNREFUSED 127.0.0.1:3306
+	at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1606:16)
+2024-09-11 16:26:58 Creating MySQL connection for 1725782199018_tree
+2024-09-11 16:26:58 Closing connection 1725782199018_tree
+2024-09-11 16:27:03 Creating MySQL connection for 1725782199018_tree
+2024-09-11 16:27:03 Closing connection 1725782199018_tree
+2024-09-11 16:27:06 Start downloading libssl-1_1-x64.dll...
+2024-09-11 16:27:06 Error: getaddrinfo ENOTFOUND cdn.database-client.com
+	at gg.from (c:\Users\soukaina\.vscode\extensions\cweijan.vscode-mysql-client2-7.6.0\out\extension.js:120394:39)
+	at Ya.<anonymous> (c:\Users\soukaina\.vscode\extensions\cweijan.vscode-mysql-client2-7.6.0\out\extension.js:121493:12)
+	at Ya.emit (node:events:519:28)
+	at i4.<computed> (c:\Users\soukaina\.vscode\extensions\cweijan.vscode-mysql-client2-7.6.0\out\extension.js:9697:26)
+	at ClientRequest.emit (node:events:531:35)
+	at TLSSocket.socketErrorListener (node:_http_client:500:9)
+	at TLSSocket.emit (node:events:519:28)
+	at emitErrorNT (node:internal/streams/destroy:169:8)
+	at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+	at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+	at wg.request (c:\Users\soukaina\.vscode\extensions\cweijan.vscode-mysql-client2-7.6.0\out\extension.js:122078:41)
+	at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+	at async r.downloadLibs (c:\Users\soukaina\.vscode\extensions\cweijan.vscode-mysql-client2-7.6.0\out\extension.js:149805:7)
+	at async r.downloadDependency (c:\Users\soukaina\.vscode\extensions\cweijan.vscode-mysql-client2-7.6.0\out\extension.js:149682:7)
+	at async r.fetchDependency (c:\Users\soukaina\.vscode\extensions\cweijan.vscode-mysql-client2-7.6.0\out\extension.js:149779:85)
+	at async NS.getCommand (c:\Users\soukaina\.vscode\extensions\cweijan.vscode-mysql-client2-7.6.0\out\extension.js:166819:43)
+	at async Ut.openTerminal (c:\Users\soukaina\.vscode\extensions\cweijan.vscode-mysql-client2-7.6.0\out\extension.js:127917:11)
+2024-09-11 16:27:06 Error: getaddrinfo ENOTFOUND cdn.database-client.com
+	at gg.from (c:\Users\soukaina\.vscode\extensions\cweijan.vscode-mysql-client2-7.6.0\out\extension.js:120394:39)
+	at Ya.<anonymous> (c:\Users\soukaina\.vscode\extensions\cweijan.vscode-mysql-client2-7.6.0\out\extension.js:121493:12)
+	at Ya.emit (node:events:519:28)
+	at i4.<computed> (c:\Users\soukaina\.vscode\extensions\cweijan.vscode-mysql-client2-7.6.0\out\extension.js:9697:26)
+	at ClientRequest.emit (node:events:531:35)
+	at TLSSocket.socketErrorListener (node:_http_client:500:9)
+	at TLSSocket.emit (node:events:519:28)
+	at emitErrorNT (node:internal/streams/destroy:169:8)
+	at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+	at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+	at wg.request (c:\Users\soukaina\.vscode\extensions\cweijan.vscode-mysql-client2-7.6.0\out\extension.js:122078:41)
+	at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+	at async r.downloadLibs (c:\Users\soukaina\.vscode\extensions\cweijan.vscode-mysql-client2-7.6.0\out\extension.js:149805:7)
+	at async r.downloadDependency (c:\Users\soukaina\.vscode\extensions\cweijan.vscode-mysql-client2-7.6.0\out\extension.js:149682:7)
+	at async r.fetchDependency (c:\Users\soukaina\.vscode\extensions\cweijan.vscode-mysql-client2-7.6.0\out\extension.js:149779:85)
+	at async NS.getCommand (c:\Users\soukaina\.vscode\extensions\cweijan.vscode-mysql-client2-7.6.0\out\extension.js:166819:43)
+	at async Ut.openTerminal (c:\Users\soukaina\.vscode\extensions\cweijan.vscode-mysql-client2-7.6.0\out\extension.js:127917:11)
+2024-09-11 16:27:06 Start downloading libssl-1_1-x64.dll...
+2024-09-11 16:27:06 Error: getaddrinfo ENOTFOUND cdn.database-client.com
+	at gg.from (c:\Users\soukaina\.vscode\extensions\cweijan.vscode-mysql-client2-7.6.0\out\extension.js:120394:39)
+	at Ya.<anonymous> (c:\Users\soukaina\.vscode\extensions\cweijan.vscode-mysql-client2-7.6.0\out\extension.js:121493:12)
+	at Ya.emit (node:events:519:28)
+	at i4.<computed> (c:\Users\soukaina\.vscode\extensions\cweijan.vscode-mysql-client2-7.6.0\out\extension.js:9697:26)
+	at ClientRequest.emit (node:events:531:35)
+	at TLSSocket.socketErrorListener (node:_http_client:500:9)
+	at TLSSocket.emit (node:events:519:28)
+	at emitErrorNT (node:internal/streams/destroy:169:8)
+	at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+	at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+	at wg.request (c:\Users\soukaina\.vscode\extensions\cweijan.vscode-mysql-client2-7.6.0\out\extension.js:122078:41)
+	at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+	at async r.downloadLibs (c:\Users\soukaina\.vscode\extensions\cweijan.vscode-mysql-client2-7.6.0\out\extension.js:149805:7)
+	at async r.downloadDependency (c:\Users\soukaina\.vscode\extensions\cweijan.vscode-mysql-client2-7.6.0\out\extension.js:149682:7)
+	at async r.fetchDependency (c:\Users\soukaina\.vscode\extensions\cweijan.vscode-mysql-client2-7.6.0\out\extension.js:149779:85)
+	at async NS.getCommand (c:\Users\soukaina\.vscode\extensions\cweijan.vscode-mysql-client2-7.6.0\out\extension.js:166819:43)
+	at async Ut.openTerminal (c:\Users\soukaina\.vscode\extensions\cweijan.vscode-mysql-client2-7.6.0\out\extension.js:127917:11)
+2024-09-11 16:27:06 Error: getaddrinfo ENOTFOUND cdn.database-client.com
+	at gg.from (c:\Users\soukaina\.vscode\extensions\cweijan.vscode-mysql-client2-7.6.0\out\extension.js:120394:39)
+	at Ya.<anonymous> (c:\Users\soukaina\.vscode\extensions\cweijan.vscode-mysql-client2-7.6.0\out\extension.js:121493:12)
+	at Ya.emit (node:events:519:28)
+	at i4.<computed> (c:\Users\soukaina\.vscode\extensions\cweijan.vscode-mysql-client2-7.6.0\out\extension.js:9697:26)
+	at ClientRequest.emit (node:events:531:35)
+	at TLSSocket.socketErrorListener (node:_http_client:500:9)
+	at TLSSocket.emit (node:events:519:28)
+	at emitErrorNT (node:internal/streams/destroy:169:8)
+	at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+	at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+	at wg.request (c:\Users\soukaina\.vscode\extensions\cweijan.vscode-mysql-client2-7.6.0\out\extension.js:122078:41)
+	at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+	at async r.downloadLibs (c:\Users\soukaina\.vscode\extensions\cweijan.vscode-mysql-client2-7.6.0\out\extension.js:149805:7)
+	at async r.downloadDependency (c:\Users\soukaina\.vscode\extensions\cweijan.vscode-mysql-client2-7.6.0\out\extension.js:149682:7)
+	at async r.fetchDependency (c:\Users\soukaina\.vscode\extensions\cweijan.vscode-mysql-client2-7.6.0\out\extension.js:149779:85)
+	at async NS.getCommand (c:\Users\soukaina\.vscode\extensions\cweijan.vscode-mysql-client2-7.6.0\out\extension.js:166819:43)
+	at async Ut.openTerminal (c:\Users\soukaina\.vscode\extensions\cweijan.vscode-mysql-client2-7.6.0\out\extension.js:127917:11)
+2024-09-11 16:27:07 Start downloading libssl-1_1-x64.dll...
+2024-09-11 16:27:07 Error: getaddrinfo ENOTFOUND cdn.database-client.com
+	at gg.from (c:\Users\soukaina\.vscode\extensions\cweijan.vscode-mysql-client2-7.6.0\out\extension.js:120394:39)
+	at Ya.<anonymous> (c:\Users\soukaina\.vscode\extensions\cweijan.vscode-mysql-client2-7.6.0\out\extension.js:121493:12)
+	at Ya.emit (node:events:519:28)
+	at i4.<computed> (c:\Users\soukaina\.vscode\extensions\cweijan.vscode-mysql-client2-7.6.0\out\extension.js:9697:26)
+	at ClientRequest.emit (node:events:531:35)
+	at TLSSocket.socketErrorListener (node:_http_client:500:9)
+	at TLSSocket.emit (node:events:519:28)
+	at emitErrorNT (node:internal/streams/destroy:169:8)
+	at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+	at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+	at wg.request (c:\Users\soukaina\.vscode\extensions\cweijan.vscode-mysql-client2-7.6.0\out\extension.js:122078:41)
+	at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+	at async r.downloadLibs (c:\Users\soukaina\.vscode\extensions\cweijan.vscode-mysql-client2-7.6.0\out\extension.js:149805:7)
+	at async r.downloadDependency (c:\Users\soukaina\.vscode\extensions\cweijan.vscode-mysql-client2-7.6.0\out\extension.js:149682:7)
+	at async r.fetchDependency (c:\Users\soukaina\.vscode\extensions\cweijan.vscode-mysql-client2-7.6.0\out\extension.js:149779:85)
+	at async NS.getCommand (c:\Users\soukaina\.vscode\extensions\cweijan.vscode-mysql-client2-7.6.0\out\extension.js:166819:43)
+	at async Ut.openTerminal (c:\Users\soukaina\.vscode\extensions\cweijan.vscode-mysql-client2-7.6.0\out\extension.js:127917:11)
+2024-09-11 16:27:07 Error: getaddrinfo ENOTFOUND cdn.database-client.com
+	at gg.from (c:\Users\soukaina\.vscode\extensions\cweijan.vscode-mysql-client2-7.6.0\out\extension.js:120394:39)
+	at Ya.<anonymous> (c:\Users\soukaina\.vscode\extensions\cweijan.vscode-mysql-client2-7.6.0\out\extension.js:121493:12)
+	at Ya.emit (node:events:519:28)
+	at i4.<computed> (c:\Users\soukaina\.vscode\extensions\cweijan.vscode-mysql-client2-7.6.0\out\extension.js:9697:26)
+	at ClientRequest.emit (node:events:531:35)
+	at TLSSocket.socketErrorListener (node:_http_client:500:9)
+	at TLSSocket.emit (node:events:519:28)
+	at emitErrorNT (node:internal/streams/destroy:169:8)
+	at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+	at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+	at wg.request (c:\Users\soukaina\.vscode\extensions\cweijan.vscode-mysql-client2-7.6.0\out\extension.js:122078:41)
+	at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+	at async r.downloadLibs (c:\Users\soukaina\.vscode\extensions\cweijan.vscode-mysql-client2-7.6.0\out\extension.js:149805:7)
+	at async r.downloadDependency (c:\Users\soukaina\.vscode\extensions\cweijan.vscode-mysql-client2-7.6.0\out\extension.js:149682:7)
+	at async r.fetchDependency (c:\Users\soukaina\.vscode\extensions\cweijan.vscode-mysql-client2-7.6.0\out\extension.js:149779:85)
+	at async NS.getCommand (c:\Users\soukaina\.vscode\extensions\cweijan.vscode-mysql-client2-7.6.0\out\extension.js:166819:43)
+	at async Ut.openTerminal (c:\Users\soukaina\.vscode\extensions\cweijan.vscode-mysql-client2-7.6.0\out\extension.js:127917:11)
+2024-09-11 16:27:09 Creating MySQL connection for 1725782199018_tree
+2024-09-11 16:27:09 Closing connection 1725782199018_tree
+2024-09-11 16:27:51 Creating MySQL connection for 1726068471379
+2024-09-11 16:27:51 Closing connection 1726068471379
+2024-09-11 16:27:56 Creating MySQL connection for 1725782199018_tree
+2024-09-11 16:27:56 Closing connection 1725782199018_tree
+2024-09-11 16:27:57 Creating MySQL connection for 1725782199018_tree
+2024-09-11 16:27:57 Closing connection 1725782199018_tree
+2024-09-11 16:27:58 Creating MySQL connection for 1726068473850
+2024-09-11 16:27:58 Closing connection 1726068473850
+2024-09-11 16:27:58 Creating MySQL connection for 1726068473850
+2024-09-11 16:27:58 Closing connection 1726068473850
+2024-09-11 16:27:58 Error: connect ECONNREFUSED 127.0.0.1:3306
+	at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1606:16)
+2024-09-11 16:28:06 Creating MySQL connection for 1725782199018_tree
+2024-09-11 16:28:06 Creating MySQL connection for 1726068473850
+2024-09-11 16:28:06 Closing connection 1725782199018_tree
+2024-09-11 16:28:06 Closing connection 1726068473850
+2024-09-11 16:28:06 Error: connect ECONNREFUSED 127.0.0.1:3306
+	at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1606:16)
+2024-09-11 16:28:06 Creating MySQL connection for 1726068473850_tree
+2024-09-11 16:28:06 Closing connection 1726068473850_tree
+2024-09-11 16:28:06 Creating MySQL connection for 1726068473850_tree
+2024-09-11 16:28:06 Closing connection 1726068473850_tree
+2024-09-11 16:28:06 Creating MySQL connection for 1726068473850_tree
+2024-09-11 16:28:06 Closing connection 1726068473850_tree
+2024-09-11 16:28:09 Creating MySQL connection for 1725782199018_tree
+2024-09-11 16:28:09 Closing connection 1725782199018_tree
+2024-09-11 16:28:15 Creating MySQL connection for 1725782199018_tree
+2024-09-11 16:28:15 Closing connection 1725782199018_tree
+2024-09-11 16:28:15 Creating MySQL connection for 1725782199018_tree
+2024-09-11 16:28:15 Closing connection 1725782199018_tree
+2024-09-11 16:28:15 Creating MySQL connection for 1725782199018_tree
+2024-09-11 16:28:15 Closing connection 1725782199018_tree
+2024-09-11 16:28:15 Creating MySQL connection for 1725782199018_tree
+2024-09-11 16:28:15 Closing connection 1725782199018_tree
+2024-09-11 16:28:22 Creating MySQL connection for 1725782199018_tree
+2024-09-11 16:28:22 Closing connection 1725782199018_tree
+2024-09-11 16:28:22 Creating MySQL connection for 1725782199018
+2024-09-11 16:28:22 Closing connection 1725782199018
+2024-09-11 16:28:30 Creating MySQL connection for 1725782199018_tree
+2024-09-11 16:28:30 Closing connection 1725782199018_tree
+2024-09-11 16:28:30 Creating MySQL connection for 1725782199018
+2024-09-11 16:28:30 Closing connection 1725782199018
+2024-09-11 16:28:37 Creating MySQL connection for 1725782199018_tree
+2024-09-11 16:28:37 Closing connection 1725782199018_tree
+2024-09-11 16:28:37 Creating MySQL connection for 1726068473850_tree
+2024-09-11 16:28:37 Closing connection 1726068473850_tree
+2024-09-11 16:29:11 Resource server started on port 8828
+2024-09-11 16:29:13 Creating MySQL connection for 1725782199018_tree
+2024-09-11 16:31:14 Creating MySQL connection for 1725782199018
+2024-09-11 22:23:03 Creating MySQL connection for 1725782199018_tree
+2024-09-11 22:23:03 Resource server started on port 8828
+2024-09-18 17:15:30 Resource server started on port 8828
+2024-09-18 17:15:55 Creating MySQL connection for 1725782199018_tree
+2024-09-18 17:20:58 Creating MySQL connection for 1725782199018
+2024-09-18 17:20:58 Executing: CREATE DATABASE tp_procedure
+2024-09-18 17:20:58 Result: 1 rows affected in 20ms
+2024-09-18 17:37:29 Executing: CREATE DATABASE gestiondescours
+2024-09-18 17:37:29 Result: 1 rows affected in 14ms
+2024-09-18 17:37:36 Executing: CREATE TABLE etudiant(  idetudiant int primary key AUTO_INCREMENT,  nometudiant VARCHAR(100),  prenometudiant VARCHAR(100),  datenaiss DATE )
+2024-09-18 17:37:36 Result: 0 rows affected in 27ms
+2024-09-18 17:37:50 Executing: CREATE TABLE cours(  idcours int primary key AUTO_INCREMENT,  nomcours VARCHAR(100),  descriptionc VARCHAR(100),  placedispo INT )
+2024-09-18 17:37:50 Result: 0 rows affected in 62ms
+2024-09-18 17:37:56 Executing: CREATE TABLE inscription(  idinscription int primary key AUTO_INCREMENT,  FOREIGN KEY (idetudiant) REFERENCES etudiant(idetudiant),  FOREIGN KEY (idcours) REFERENCES cours(idcours),  note INT )
+2024-09-18 17:37:56 Key column 'idetudiant' doesn't exist in table
+2024-09-18 17:38:48 Executing: CREATE TABLE inscription(  idinscription int primary key AUTO_INCREMENT,  idetudiant INT,  idcours INT,  FOREIGN KEY (idetudiant) REFERENCES etudiant(idetudiant),  FOREIGN KEY (idcours) REFERENCES cours(idcours),  note INT )
+2024-09-18 17:38:48 Result: 0 rows affected in 115ms
+2024-09-18 17:40:45 Executing: CREATE PROCEDURE ajouter_etudiant(     IN p_nom VARCHAR(255),     IN p_prenom VARCHAR(255),     IN p_date_naissance DATE ) BEGIN     INSERT INTO etudiants (nom, prenom, date_naissance)     VALUES (p_nom, p_prenom, p_date_naissance); END 
+2024-09-18 17:40:45 Result: 0 rows affected in 29ms
+2024-09-18 17:41:10 Executing: CREATE PROCEDURE ajouter_etudiant(     IN p_nom VARCHAR(255),     IN p_prenom VARCHAR(255),     IN p_date_naissance DATE ) BEGIN     INSERT INTO etudiants (nom, prenom, date_naissance)     VALUES (p_nom, p_prenom, p_date_naissance); END 
+2024-09-18 17:41:10 PROCEDURE ajouter_etudiant already exists
+2024-09-18 17:51:58 Executing: call ajouter_etudiant
+2024-09-18 17:51:58 Incorrect number of arguments for PROCEDURE phpmyadmin.ajouter_etudiant; expected 3, got 0
+2024-09-18 17:53:50 Executing: call ajouter_etudiant("lakhmaiss","soukaina","19-08-2001")
+2024-09-18 17:53:50 Table 'phpmyadmin.etudiants' doesn't exist
+2024-09-18 17:54:18 Executing: call ajouter_etudiant("lakhmaiss","soukaina","19-08-2001")
+2024-09-18 17:54:18 Table 'phpmyadmin.etudiants' doesn't exist
+2024-09-18 18:00:20 Executing: CREATE DEFINER=`root`@`localhost` PROCEDURE `ajouter_etudiant`(     IN p_nom VARCHAR(255),     IN p_prenom VARCHAR(255),     IN p_date_naissance DATE ) BEGIN     INSERT INTO etudiants (nom, prenom, date_naissance)     VALUES (p_nom, p_prenom, p_date_naissance); END
+2024-09-18 18:00:20 PROCEDURE ajouter_etudiant already exists
+2024-09-18 18:00:58 Executing: CREATE DEFINER=`root`@`localhost` PROCEDURE `ajouter_etudiant`(     IN p_nom VARCHAR(255),     IN p_prenom VARCHAR(255),     IN p_date_naissance DATE ) BEGIN     INSERT INTO etudiants (nom, prenom, date_naissance)     VALUES (p_nom, p_prenom, p_date_naissance);     SELECT* FROM etudiants; END
+2024-09-18 18:00:58 PROCEDURE ajouter_etudiant already exists
+2024-09-18 18:05:11 Executing: call ajouter_etudiant("lakhmaiss","soukaina","19-08-2001")
+2024-09-18 18:05:11 Table 'phpmyadmin.etudiants' doesn't exist
+2024-09-18 18:05:33 Executing: CREATE TABLE etudiants(  idetudiant int primary key AUTO_INCREMENT,  nometudiant VARCHAR(100),  prenometudiant VARCHAR(100),  datenaiss DATE )
+2024-09-18 18:05:33 Result: 0 rows affected in 44ms
+2024-09-18 18:05:41 Executing: call ajouter_etudiant("lakhmaiss","soukaina","19-08-2001")
+2024-09-18 18:05:41 Unknown column 'nom' in 'field list'
+2024-09-18 18:06:29 Executing: CREATE PROCEDURE ajouter_etudiant(     IN p_nom VARCHAR(255),     IN p_prenom VARCHAR(255),     IN p_date_naissance DATE ) BEGIN     INSERT INTO etudiants (nom, prenom, date_naissance)     VALUES (p_nom, p_prenom, p_date_naissance); END 
+2024-09-18 18:06:29 PROCEDURE ajouter_etudiant already exists
+2024-09-18 18:06:34 Executing: call ajouter_etudiant("lakhmaiss","soukaina","19-08-2001")
+2024-09-18 18:06:34 Unknown column 'nom' in 'field list'
+2024-09-18 18:07:33 Executing: CREATE TABLE etudiants(  idetudiant int primary key AUTO_INCREMENT,  nometudiant VARCHAR(255),  prenometudiant VARCHAR(255),  datenaiss DATE )
+2024-09-18 18:07:33 Table 'etudiants' already exists
+2024-09-18 18:10:50 Executing: call ajouter_etudiant("lakhmaiss","soukaina","1999-02-02")
+2024-09-18 18:10:50 Unknown column 'nom' in 'field list'
