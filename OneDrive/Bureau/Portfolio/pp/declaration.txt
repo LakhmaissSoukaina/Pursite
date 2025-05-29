@@ -1,0 +1,87 @@
+1//
+
+algorithme: Affichage une seule fois le message "ENCG-JA 2024/2025"
+debut
+    Ecrire("ENCG-JA 2024/2025")
+fin
+
+1//
+
+titre: Affichage une seule fois le message "ENCG-JA 2024/2025".py
+print("ENCG-JA 2024/2025");
+
+2//
+
+algorithe: Affichage trois fois d'un nom complet
+debut
+    Ecrire("meryem alahyane")
+    Ecrire("meryem alahyane")
+    Ecrire("meryem alahyane")
+fin
+
+2//
+
+titre: Affichage trois fois d'un nom complet.py
+
+print("meryem alahyane");
+print("meryem alahyane");
+print("meryem alahyane");
+
+3//
+
+algorithme:Lecture d'une valeur entiere saisie par l'utilisateur
+Variable X:entiere
+debut
+    Ecrire("veillez saisir une valeur entiere")
+    Lire(X)
+fin
+
+3//
+
+titre:Lecture d'une valeur entiere saisie par l'utilisateur.py
+X=int(print("veillez saisir une valeur entiere"))
+
+4//
+
+algorithme: Lecture de deux valeurs entiere et reelle saisie par l'utilisateur
+Variable: X: entier;
+          Y: reelle;
+debut
+    Ecrire("veillez saisir une valeur entiere")
+    Lire(X)
+    Ecrire("veillez saisir une valeur reelle")
+    Lire(Y)
+    Ecrire("la valeur entiere est:",X,"et la valeur reelle est:",Y)
+fin
+
+4//
+
+titre:Lecture de deux valeurs entiere et reelle saisie par l'utilisateur.py
+X=int(print("veillez saisir une valeur entiere"))
+Y=float(print("veillez saisir une valeur reelle"))
+print("la valeur entiere est:",X,"et la valeur reelle est:",Y)
+
+
+
+
+ecrire("veuillez entrer le salaire")
+lire(salair)
+si salair<4000 alors
+    part <-- salair+0.2
+sinon si (salair<8000 et salair>=4000) alors
+    part <-- salair+0.15
+    fin si
+fin si 
+ecrire("veuillez entrer les annees d'anciennetees")
+lire(ans)
+si ans >5 alors
+    part <-- salair+0.1
+fin si
+ecrire("etes-vous marie(oui/non)")
+lire(mar)
+si mar=oui alors
+    parti <-- salair+0.05
+    ecrire("entrez nbr d'enfants")
+    lire(nbrF)
+    parti <-- salair+ 0.025 * nbrF
+fin si 
